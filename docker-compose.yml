@@ -21,10 +21,10 @@ version: "3"
 
 services:
   web:
-    container_name: youcef-api
+    container_name: hadj-api
     build:
       context: .
-    image: youcef-api
+    image: hadj-api
     command: python manage.py runserver 0:8000
     ports:
     - "8020:8000"
@@ -38,7 +38,7 @@ services:
      
     env_file: .env
     networks:
-      - youcef-api-network
+      - hadj-api-network
     volumes:
       - .:/home/app
     labels:
