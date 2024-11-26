@@ -4,9 +4,9 @@ services:
   web:
     container_name: youcef-api
     build:
-      context: .
-    # image supprimé car redondant avec build
-    command: "python manage.py runserver 0.0.0.0:8000"
+      context:  
+    image: youcef-api
+    command: python manage.py runserver 0:8000
     ports:
       - "8020:8000"
     restart: always
@@ -18,7 +18,7 @@ services:
       POSTGRES_PORT: ${POSTGRES_PORT}
     env_file: .env
     networks:
-      - youcef-api-network
+      - hadj-api-network
     volumes:
       - .:/home/app
     labels:

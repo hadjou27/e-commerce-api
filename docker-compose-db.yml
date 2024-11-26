@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    container_name: youcef-api-POSTGRES
+    container_name: hadj-api-POSTGRES
     image: postgres
     restart: always
     volumes:
@@ -15,11 +15,11 @@ services:
     ports:
       - "5400:${POSTGRES_PORT}"
     networks:
-      - youcef-api-network
+      - hadj-api-network
     labels:
       io.portainer.accesscontrol.teams: Backend
   pgadmin:
-    container_name: youcef-api-pgadmin4
+    container_name: hadj-api-pgadmin4
     image: dpage/pgadmin4
     restart: always
     environment:
@@ -28,7 +28,7 @@ services:
     ports:
       - "1234:80"
     networks:
-      - youcef-api-network
+      - hadj-api-network
     labels:
       io.portainer.accesscontrol.teams: Backend
 networks:
