@@ -1,11 +1,10 @@
 from django.db import models
-from storages.backends import s3boto3
 from uuid import uuid4
 
 
 # Create your models here.
 
-class Product(models.Model):
+class Product(models.Model): 
     id = models.UUIDField(primary_key=True,default=uuid4,editable=False)
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -18,7 +17,6 @@ class Product(models.Model):
 class Collection(models.Model):
     title = models.CharField(max_length=255)
     product = models.ManyToManyField(Product,related_name="collections")
-
     
     
     def __str__(self) :
@@ -29,7 +27,7 @@ class Collection(models.Model):
 class ProductMedia(models.Model):
     title = models.CharField(max_length=255)
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name='image')
-    image = models.ImageField(upload_to='store/images',storage=s3boto3.S3Boto3Storage())
+    image = models.ImageField()
     
     def __str__(self) :
         return self.title   

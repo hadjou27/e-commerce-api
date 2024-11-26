@@ -22,7 +22,6 @@ class ProductMediaView(APIView):
     parser_classes = (MultiPartParser, FormParser)
     
     def get(self, request, product_id,*args,format=None ,**kwargs):
-         print('idddddddddddddddddddddddddddddddddddddddd',product_id)
          product = get_object_or_404(Product, id=product_id)
          serializer = ProductMediaSerializer(product.image.all(),many=True)
          return Response(serializer.data)
