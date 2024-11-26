@@ -1,4 +1,4 @@
-from app.views.sendmailfunc import send_email
+from app.utils import sendmailfunc
 from app.models import CustomUser
 from app.serializers import UserRegistrationSerializer
 
@@ -21,7 +21,6 @@ class CurrentUserView(APIView):
         user_id = CustomUser.objects.get(pk=request.user.pk) 
         serializer = UserRegistrationSerializer(user_id, data=request.data, partial=True)  
         if serializer.is_valid():
-            print(">>>>>>>>>>>>>>",request.user.password)
             serializer.save()
             return Response(serializer.data, status=status.HTTP_200_OK)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
@@ -35,7 +34,7 @@ class UserRegisterView(APIView):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         user_email = request.data.get('email')
-        send_email(user_email)
+        sendmailfunc.send_email(user_email)
         return Response(serializer.data)
         
         
