@@ -74,4 +74,3 @@ Application User :
     - Add JWT authentication to further secure the API.
     - Integrate cloud storage (AWS S3, Backblaze B2) for media files.
     - Implement a real-time notification system using WebSockets or Celery.
-    - Enable password recovery for users.
